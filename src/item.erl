@@ -25,7 +25,7 @@ insert(Title, Subtitle, Tags, Body) ->
   insert(now(), Title, Subtitle, Tags, Body).
 
 by_pubdate(Pubdate) ->
-  {atomic, Items} = mnesia:read({item, Pubdate}),
+  {atomic, Items} = mnesia:transaction(fun () -> mnesia:read({item, Pubdate}) end),
   Items.
 
 all() ->
@@ -44,7 +44,7 @@ descending(Query) ->
   lists:reverse(qlc:eval(Query)).
 
 filter_tag(Tag, Query) ->
-  qlc:q([Item || Item <- Query, lists:elem(Tag, Item#item.tags)]).
+  qlc:q([Item || Item <- Query, lists:member(Tag, Item#item.tags)]).
 
 eval_query(Query_fun) ->
   {atomic, Items} = mnesia:transaction(fun () -> qlc:eval(Query_fun()) end),
