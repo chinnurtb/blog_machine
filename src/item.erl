@@ -3,7 +3,7 @@
 
 -include("/usr/lib/erlang/lib/stdlib-1.16.2/include/qlc.hrl").
 
--record(item, {pubdate, title, subtitle, tags, body}).
+-include("item.hrl").
 
 start() ->
   mnesia:create_schema([node()]),

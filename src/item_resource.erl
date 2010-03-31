@@ -1,5 +1,5 @@
 -module(item_resource).
--export([init/1, content_types_provided/2, to_text/2]).
+-export([init/1, content_types_provided/2, to_text/2, to_html/2]).
 
 -include_lib("webmachine/include/webmachine.hrl").
 
@@ -8,7 +8,7 @@ init([]) ->
   {ok, undefined}.
 
 content_types_provided(ReqData, Context) ->
-   {[{"text/plain",to_text}], ReqData, Context}.
+   {[{"text/html",to_html},{"text/plain",to_text}], ReqData, Context}.
 
 string_to_integer(String) ->
   {Integer, []} = string:to_integer(String),
@@ -50,5 +50,11 @@ term_to_string(Term) ->
   io_lib:format("~p", [Term]).
 
 to_text(Reqdata, Context) ->
-  {term_to_string(get_items(Reqdata)), Reqdata, Context}.
+  Text = term_to_string(get_items(Reqdata)),
+  {Text, Reqdata, Context}.
+
+to_html(Reqdata, Context) ->
+  ok = erltl:compile("src/item_template.et"),
+  Html = item_template:render(get_items(Reqdata)),
+  {Html, Reqdata, Context}.
 

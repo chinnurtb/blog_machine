@@ -7,7 +7,8 @@
     blog_sup,
     blog_deps,
     item,
-    item_resource
+    item_resource,
+    erltl
   ]},
   {registered, []},
   {mod, {blog_app, []}},

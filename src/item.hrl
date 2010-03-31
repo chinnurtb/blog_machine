@@ -1,0 +1,1 @@
+-record(item, {pubdate, title, subtitle, tags, body}).
