@@ -2,12 +2,21 @@
 -include("src/item.hrl").
 %>
 
-<title>Scattered thoughts</title>
+<!-- beginning of template -->
+
 <% [ item(Item) || Item <- Data ] %>
 
+<!-- end of template -->
+
 <%@ item(Item) %>
-<div>
-  <h1><% Item#item.title %></h1> 
-  <% Item#item.subtitle %>
-  <p><% Item#item.body %></p>
+<div class="item">
+  <div class="header"> 
+    <div class="title">
+      <% Item#item.title %>
+      <span class="subtitle"><% Item#item.subtitle %></span>
+    </div>
+    <div class="date">date today</div>
+  </div>
+  <div class="divider"></div>
+  <p class="body"><% Item#item.body %></p>
 </div>

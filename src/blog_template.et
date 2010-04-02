@@ -1,0 +1,52 @@
+<!-- beginning of template -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Scattered Thoughts</title>
+  <!--[if lt IE 7]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE7.js" type="text/javascript"></script><![endif]-->
+  <!--[if lt IE 8]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js" type="text/javascript"></script><![endif]-->
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
+  <link rel="stylesheet" type="text/css" href="static/blog.css">
+</head>
+
+<!-- uses yui grids for layout -->
+<body>
+<div id="doc" > <!--class="yui-t1"-->
+  <div id="hd">
+    <span id="title">Scattered Thoughts</span>
+    <div id="navbar">
+      <% by_tag("post", "Blog") %> 
+      <% by_tag("project", "Projects") %> 
+      <% by_tag("dead", "Graveyard") %>
+      <% by_pubdate("", "About") %>
+    </div>
+  </div> 
+  <div id="bd">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div class="yui-g"><% Data %></div>
+      </div>
+    </div>
+    <!-- <div class="yui-b">Sidebar</div> -->
+  </div>
+  <div id="ft">Copyright <big>&copy;</big> Jamie Brandon 2010</div> 
+</div>
+</body>
+
+</html>
+
+<!-- end of template -->
+
+<%@ by_tag(Tag, Text) %>
+<a class="nav" href="<% "/all?order=descending&tag=" ++ Tag %>" >
+  <%Text%>
+</a>
+
+<%@ by_pubdate(Pubdate, Text) %>
+<a class="nav" href="<% "/pubdate/" ++ Pubdate %>" >
+  <%Text%>
+</a>

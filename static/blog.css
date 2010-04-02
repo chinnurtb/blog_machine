@@ -1,0 +1,83 @@
+@import url("http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css");
+
+body {
+  font-size: 1.0em;
+  font-family: "arial";
+  color: #333;
+}
+
+#hd, #ft {
+  text-align: center;
+}
+
+#hd {
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+}
+
+#title {
+  margin: 1em;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#navbar {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+#hd .nav {
+  margin: 1em;
+  color: #333;
+}
+
+#ft {
+  margin-bottom: 2em;
+}
+
+.item {
+  margin: 2em;
+  border: 1px solid #ccc;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.item .header {
+  margin-top: -0.75em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.item .title, .item .date {
+  background-color: #fff; 
+  padding: 0.25em;
+  border: 1px solid #ccc; 
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+
+}
+
+.item .title {
+  float: left;
+  font-weight: bold;
+}
+
+.item .subtitle {
+  font-weight: normal;
+}
+
+.item .date {
+  float: right;
+}
+
+.item .divider {
+  clear: both;
+}
+
+.item .body {
+  padding: 1em;
+}
