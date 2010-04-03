@@ -2,11 +2,11 @@
 -include("src/item.hrl").
 %>
 
-<!-- beginning of template -->
+<%! beginning of template %>
 
 <% [ item(Item) || Item <- Data ] %>
 
-<!-- end of template -->
+<%! end of template %>
 
 <%@ item(Item) %>
 <div class="item">
