@@ -1,5 +1,5 @@
 -module(item_resource).
--export([init/1, content_types_provided/2, to_text/2, to_html/2]).
+-export([init/1, content_types_provided/2, to_html/2]).
 
 -include_lib("webmachine/include/webmachine.hrl").
 
@@ -8,7 +8,7 @@ init([]) ->
   {ok, undefined}.
 
 content_types_provided(ReqData, Context) ->
-   {[{"text/html",to_html},{"text/plain",to_text}], ReqData, Context}.
+   {[{"text/html",to_html}], ReqData, Context}.
 
 string_to_integer(String) ->
   {Integer, []} = string:to_integer(String),
@@ -45,13 +45,6 @@ get_items(Reqdata) ->
       Pubdate = {string_to_integer(Mega),string_to_integer(One),string_to_integer(Micro)},
       item:by_pubdate(Pubdate)
   end.
-
-term_to_string(Term) ->
-  io_lib:format("~p", [Term]).
-
-to_text(Reqdata, Context) ->
-  Text = term_to_string(get_items(Reqdata)),
-  {Text, Reqdata, Context}.
 
 to_html(Reqdata, Context) ->
   ok = erltl:compile("src/item_template.et"),
