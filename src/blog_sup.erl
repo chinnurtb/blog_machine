@@ -42,16 +42,21 @@ upgrade() ->
 %% @doc supervisor callback.
 init([]) ->
     Ip = case os:getenv("WEBMACHINE_IP") of false -> "0.0.0.0"; Any -> Any end,
-    {ok, Dispatch} = file:consult(filename:join(
-                         [filename:dirname(code:which(?MODULE)),
-                          "..", "priv", "dispatch.conf"])),
+    {ok, Dispatch} = 
+      file:consult(
+        filename:join(
+          [filename:dirname(code:which(?MODULE)),
+          "..", "priv", "dispatch.conf"])),
     WebConfig = [
-		 {ip, Ip},
-		 {port, 8000},
-                 {log_dir, "priv/log"},
-		 {dispatch, Dispatch}],
+		  {ip, Ip},
+		  {port, 8000},
+      {log_dir, "priv/log"},
+		  {dispatch, Dispatch}],
     Web = {webmachine_mochiweb,
-	   {webmachine_mochiweb, start, [WebConfig]},
-	   permanent, 5000, worker, dynamic},
-    Processes = [Web],
+	    {webmachine_mochiweb, start, [WebConfig]},
+	    permanent, 5000, worker, dynamic},
+    Markup = {markup, 
+      {markup, start_link, []},
+      permanent, 1000, worker, [markup]},
+    Processes = [Web, Markup],
     {ok, {{one_for_one, 10, 10}, Processes}}.

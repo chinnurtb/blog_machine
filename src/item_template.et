@@ -26,6 +26,6 @@
     <div class="date"><% date(Item#item.pubdate) %></div>
   </div>
   <div class="divider"></div>
-  <p class="body"><% Item#item.body %></p>
+  <p class="body"><% markup:to_html(Item#item.body) %></p>
 </div>
   
