@@ -8,15 +8,24 @@
 
 <%! end of template %>
 
+<%@ date(Pubdate) %>
+<%? {{Year,Month,Day},_} = calendar:now_to_universal_time(Pubdate) %>
+<% util:term_to_string(Year) %>/<% util:term_to_string(Month) %>/<% util:term_to_string(Day) %>
+
+<%@ by_pubdate(Pubdate) %>
+<%? {Mega,One,Micro} = Pubdate %>
+/by_pubdate/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
+
 <%@ item(Item) %>
 <div class="item">
   <div class="header"> 
     <div class="title">
-      <% Item#item.title %>
+      <a href=<% by_pubdate(Item#item.pubdate) %>><% Item#item.title %></a>
       <span class="subtitle"><% Item#item.subtitle %></span>
     </div>
-    <div class="date">date today</div>
+    <div class="date"><% date(Item#item.pubdate) %></div>
   </div>
   <div class="divider"></div>
   <p class="body"><% Item#item.body %></p>
 </div>
+  
