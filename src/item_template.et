@@ -21,11 +21,10 @@
   <div class="header"> 
     <div class="title">
       <a href=<% by_pubdate(Item#item.pubdate) %>><% Item#item.title %></a>
-      <span class="subtitle"><% Item#item.subtitle %></span>
     </div>
     <div class="date"><% date(Item#item.pubdate) %></div>
   </div>
   <div class="divider"></div>
-  <p class="body"><% markup:to_html(Item#item.body) %></p>
+  <div class="body"><% markup:to_html(Item#item.body) %></div>
 </div>
   
