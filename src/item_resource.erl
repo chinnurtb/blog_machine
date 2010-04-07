@@ -35,7 +35,7 @@ get_items(Reqdata) ->
       item:eval_query( 
         fun () ->
           lists:foldl(
-            fun (Arg,Query) -> handle_arg(Arg,Query) end, 
+            fun handle_arg/2, 
             item:all(), 
             wrq:req_qs(Reqdata)
           ) 

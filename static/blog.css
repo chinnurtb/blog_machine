@@ -13,6 +13,10 @@ body {
   margin-bottom: 2em;
 }
 
+a {
+  color: #333;
+}
+
 #title {
   margin: 1em;
   font-size: 2em;
