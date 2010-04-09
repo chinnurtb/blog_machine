@@ -1,5 +1,5 @@
 -module(item).
--export([start/0, insert/4, insert/5, by_pubdate/1, all/0, limit/2, ascending/1, descending/1, filter_tag/2, eval_query/1]).
+-export([start/0, insert/4, insert/5, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2]).
 
 -include("/usr/lib/erlang/lib/stdlib-1.16.2/include/qlc.hrl").
 
@@ -29,23 +29,17 @@ by_pubdate(Pubdate) ->
   Items.
 
 all() ->
-  mnesia:table(item).
-
-limit(N, Query) ->
-  Cursor = qlc:cursor(Query),
-  Items = qlc:next_answers(Cursor, N),
-  ok = qlc:delete_cursor(Cursor),
+  {atomic, Items} = 
+    mnesia:transaction(fun () -> 
+      qlc:e(mnesia:table(item))
+    end),
   Items.
 
-ascending(Query) ->
-  Query.
-
-descending(Query) ->
-  lists:reverse(qlc:eval(Query)).
-
-filter_tag(Tag, Query) ->
-  qlc:q([Item || Item <- Query, lists:member(Tag, Item#item.tags)]).
-
-eval_query(Query_fun) ->
-  {atomic, Items} = mnesia:transaction(fun () -> qlc:eval(Query_fun()) end),
+ascending(Items) ->
   Items.
+
+descending(Items) ->
+  lists:reverse(Items).
+
+filter_tag(Tag, Items) ->
+  [Item || Item <- Items, lists:member(Tag, Item#item.tags)].

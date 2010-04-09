@@ -41,4 +41,4 @@
 <%! end of template %>
 
 <%@ by_tag(Tag, Text) %>
-<a class="nav" href="<% "/all?order=descending&tag=" ++ Tag %>"><%Text%></a>
+<a class="nav" href="<% "/all?order=desc&tag=" ++ Tag %>"><%Text%></a>

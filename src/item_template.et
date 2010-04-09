@@ -4,7 +4,10 @@
 
 <%! beginning of template %>
 
-<% [ item(Item) || Item <- Data ] %>
+<% 
+  Items = Data,
+  [ item(Item) || Item <- Items ] 
+%>
 
 <%! end of template %>
 
@@ -14,7 +17,7 @@
 
 <%@ by_pubdate(Pubdate) %>
 <%? {Mega,One,Micro} = Pubdate %>
-/by_pubdate/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
+/one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
 
 <%@ item(Item) %>
 <div class="item">
