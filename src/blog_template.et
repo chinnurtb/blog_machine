@@ -17,7 +17,7 @@
 <body>
 <div id="doc" >
   <div id="hd">
-    <span id="title">Scattered Thoughts</span>
+    <a id="title" href="/all?order=desc&tag=post">Scattered Thoughts</a>
     <div id="navbar">
       <% by_tag("post", "Blog") %> 
       <% by_tag("project", "Projects") %> 
