@@ -8,8 +8,11 @@
     blog_deps,
     blog_error_handler,
     item,
-    item_resource,
-    erltl
+    item_one_resource,
+    item_all_resource,
+    redirect_resource,
+    erltl,
+    markup
   ]},
   {registered, []},
   {mod, {blog_app, []}},
