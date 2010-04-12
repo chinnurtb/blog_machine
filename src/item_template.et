@@ -19,15 +19,24 @@
 <%? {Mega,One,Micro} = Pubdate %>
 /one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
 
+<%@ by_tag(Tag) %>
+/all?order=desc&tag=<%Tag%>
+
+<%@ anchor(Href, Text) %>
+<a href=<% Href %>><% Text %></a>
+
 <%@ item(Item) %>
 <div class="item">
   <div class="header"> 
     <div class="title">
-      <a href=<% by_pubdate(Item#item.pubdate) %>><% Item#item.title %></a>
+      <% anchor(by_pubdate(Item#item.pubdate), Item#item.title) %>
     </div>
     <div class="date"><% date(Item#item.pubdate) %></div>
   </div>
   <div class="divider"></div>
   <div class="body"><% markup:to_html(Item#item.body) %></div>
+  <div class="tags">
+    <% [ anchor(by_tag(Tag), Tag) || Tag <- Item#item.tags ] %>
+  </div>
 </div>
   

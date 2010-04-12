@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #333;
+  color: #000;
   text-decoration : none
 }
 
@@ -31,7 +31,6 @@ a {
 
 #hd .nav {
   margin: 1em;
-  color: #333;
 }
 
 #ft {
@@ -92,4 +91,14 @@ a {
 
 .item .body pre {
   margin: 1em;
+}
+
+.item .tags {
+  margin: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.item .tags a {
+  margin-left: 1em;
 }
