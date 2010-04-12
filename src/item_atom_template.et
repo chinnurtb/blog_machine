@@ -40,5 +40,5 @@
 
 <%@ by_pubdate(Pubdate) %>
 <%? {Mega,One,Micro} = Pubdate %>
-/one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
+<% io_lib:format("/one/~w/~w/~w", [Mega,One,Micro]) %>
 
