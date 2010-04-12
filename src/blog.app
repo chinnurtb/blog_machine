@@ -6,6 +6,7 @@
     blog_app,
     blog_sup,
     blog_deps,
+    blog_error_handler,
     item,
     item_resource,
     erltl
