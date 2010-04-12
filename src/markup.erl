@@ -16,7 +16,7 @@ start_link() ->
 % state handlers
 
 init([]) ->
-  Port = open_port({spawn, "simple_markup"},[stream, {line, 1024}]),
+  Port = open_port({spawn, "simple_markup"},[{packet, 4}]),
   {ok, #state{port=Port}}.
 
 terminate(_Reason, State) ->
@@ -31,26 +31,15 @@ code_change(_OldVsn, State, _Extra) ->
 
 handle_call({to_html, Markup}, _From, State) ->
   true = port_command(State#state.port, Markup),
-  % Hack around the fact that erlang ports cant send eof
-  true = port_command(State#state.port, "\nEOF\n"),
   Response = case collect_response(State#state.port) of
-    {response, Html} -> {reply, Html, State}
+    {ok, Html} -> {reply, Html, State}
   end,
   Response.
 
 collect_response(Port) ->
-  collect_response(Port, [], []).
-
-collect_response(Port, RespAcc, LineAcc) ->
   receive
-    {Port, {data, {_, "EOF"}}} ->
-      {response, lists:reverse(RespAcc)};
-    {Port, {data, {eol, Result}}} ->
-      Line = lists:reverse([Result | LineAcc]),
-      collect_response(Port, [Line | RespAcc], []);
-    {Port, {data, {noeol, Result}}} ->
-      collect_response(Port, RespAcc, [Result | LineAcc])
-  after 1000 -> {timeout, RespAcc, LineAcc}
+    {Port, {data, Data}} -> {ok, Data}
+  after 1000 -> timeout
   end.
 
 handle_cast(_Msg, State) ->
