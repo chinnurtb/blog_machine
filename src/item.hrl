@@ -1,1 +1,1 @@
--record(item, {pubdate, title, subtitle, tags, body}).
+-record(item, {pubdate, title, tags, body}).
