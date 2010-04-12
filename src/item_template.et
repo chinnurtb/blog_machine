@@ -11,20 +11,6 @@
 
 <%! end of template %>
 
-<%@ date(Pubdate) %>
-<%? {{Year,Month,Day},_} = calendar:now_to_universal_time(Pubdate) %>
-<% util:term_to_string(Year) %>/<% util:term_to_string(Month) %>/<% util:term_to_string(Day) %>
-
-<%@ by_pubdate(Pubdate) %>
-<%? {Mega,One,Micro} = Pubdate %>
-/one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
-
-<%@ by_tag(Tag) %>
-/all?order=desc&tag=<%Tag%>
-
-<%@ anchor(Href, Text) %>
-<a href=<% Href %>><% Text %></a>
-
 <%@ item(Item) %>
 <div class="item">
   <div class="header"> 
@@ -39,4 +25,18 @@
     <% [ anchor(by_tag(Tag), Tag) || Tag <- Item#item.tags ] %>
   </div>
 </div>
+
+<%@ date(Pubdate) %>
+<%? {{Year,Month,Day},_} = calendar:now_to_universal_time(Pubdate) %>
+<% util:term_to_string(Year) %>/<% util:term_to_string(Month) %>/<% util:term_to_string(Day) %>
+
+<%@ by_pubdate(Pubdate) %>
+<%? {Mega,One,Micro} = Pubdate %>
+/one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
+
+<%@ by_tag(Tag) %>
+/all?order=desc&tag=<%Tag%>
+
+<%@ anchor(Href, Text) %>
+<a href=<% Href %>><% Text %></a>
   

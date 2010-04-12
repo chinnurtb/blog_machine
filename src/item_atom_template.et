@@ -1,0 +1,44 @@
+<%~
+-include("src/item.hrl").
+%>
+
+<%! beginning of template %>
+
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Scattered Thoughts</title>
+  <updated><% date((item:last())#item.pubdate) %></updated>
+  <author>
+    <name>Jamie Brandon</name>
+  </author>
+  <id>http://localhost/</id>
+  <link rel="self" href="http://localhost/"/>
+
+  <% 
+    Items = Data,
+    [ item(Item) || Item <- Items ] 
+  %>
+
+</feed>
+
+<%! end of template %>
+
+<%@ item(Item) %>
+
+  <entry>
+    <title><% Item#item.title %></title>
+    <updated><% date(Item#item.pubdate) %></updated>
+    <id>http://localhost/<% by_pubdate(Item#item.pubdate) %></id>
+    <content type="text/html" src="http://localhost/<% by_pubdate(Item#item.pubdate) %>"/>
+    <summary><% Item#item.title %></summary>
+  </entry>
+
+<%@ date(Pubdate) %>
+<%? {{Year,Month,Day},{Hours,Minutes,Seconds}} = calendar:now_to_universal_time(Pubdate) %>
+<% io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0BZ", [Year,Month,Day,Hours,Minutes,Seconds]) %>
+
+<%@ by_pubdate(Pubdate) %>
+<%? {Mega,One,Micro} = Pubdate %>
+/one/<%util:term_to_string(Mega)%>/<%util:term_to_string(One)%>/<%util:term_to_string(Micro)%>
+

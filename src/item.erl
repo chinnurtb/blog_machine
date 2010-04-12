@@ -1,5 +1,5 @@
 -module(item).
--export([start/0, insert/3, insert/4, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2]).
+-export([start/0, insert/3, insert/4, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
 
 -include("/usr/lib/erlang/lib/stdlib-1.16.2/include/qlc.hrl").
 
@@ -27,6 +27,10 @@ insert(Title, Tags, Body) ->
 by_pubdate(Pubdate) ->
   {atomic, Items} = mnesia:transaction(fun () -> mnesia:read({item, Pubdate}) end),
   Items.
+
+last() ->
+  {atomic, [Item]} = mnesia:transaction(fun () -> mnesia:read({item, mnesia:last(item)}) end),
+  Item.
 
 all() ->
   {atomic, Items} = 
