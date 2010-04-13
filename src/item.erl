@@ -1,5 +1,5 @@
 -module(item).
--export([start/0, insert/3, insert/4, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
+-export([start/0, insert/3, insert/4, insert_from_file/1, insert_from_file/2, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
 
 -include("/usr/lib/erlang/lib/stdlib-1.16.2/include/qlc.hrl").
 
@@ -24,6 +24,25 @@ insert(Pubdate, Title, Tags, Body) ->
 insert(Title, Tags, Body) ->
   insert(now(), Title, Tags, Body).
 
+insert_from_file(File) ->
+  insert_from_file(File, false).
+
+insert_from_file(File, Replace) ->
+  {ok, Bin} = file:read_file(File),
+  Text = binary_to_list(Bin),
+  {Title, Rest1} = lists:splitwith(fun(Char) -> Char /= $\n end, Text),
+  Rest2 = string:strip(Rest1,left,$\n),
+  {Tagline, Rest3} = lists:splitwith(fun(Char) -> Char /= $\n end, Rest2),
+  Tags = string:tokens(Tagline, " "),
+  Body = string:strip(Rest3,left,$\n),
+  case Replace of 
+    false ->
+      insert(Title, Tags, Body);
+    true ->
+      [Item] = by_title(Title),
+      insert(Item#item.pubdate, Title, Tags, Body)
+  end.
+
 by_pubdate(Pubdate) ->
   {atomic, Items} = mnesia:transaction(fun () -> mnesia:read({item, Pubdate}) end),
   Items.
@@ -31,6 +50,10 @@ by_pubdate(Pubdate) ->
 last() ->
   {atomic, [Item]} = mnesia:transaction(fun () -> mnesia:read({item, mnesia:last(item)}) end),
   Item.
+
+by_title(Title) ->
+  {atomic, Items} = mnesia:transaction(fun () -> mnesia:match_object(#item{pubdate=' ', title=Title, tags=' ', body=' '}) end),
+  Items.
 
 all() ->
   {atomic, Items} = 
