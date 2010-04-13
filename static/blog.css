@@ -102,3 +102,7 @@ a {
 .item .tags a {
   margin-left: 1em;
 }
+
+#feed {
+  margin-bottom: 1em;
+}

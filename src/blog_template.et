@@ -32,7 +32,10 @@
       </div>
     </div>
   </div>
-  <div id="ft">Copyright <big>&copy;</big> Jamie Brandon 2010</div>
+  <div id="ft">
+    <div id="feed"><a href="/atom"><img src="/static/atom.png"/></a></div>
+    <div>Copyright <big>&copy;</big> Jamie Brandon 2010</div>
+  </div>
 </div>
 </body>
 
