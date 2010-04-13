@@ -15,6 +15,7 @@ start() ->
     , {attributes, record_info(fields, item)}
     ]
   ),
+  ok = mnesia:wait_for_tables([item],10000),
   ok.
 
 insert(Pubdate, Title, Tags, Body) ->
