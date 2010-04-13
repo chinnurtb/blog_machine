@@ -12,8 +12,8 @@
   <author>
     <name>Jamie Brandon</name>
   </author>
-  <id>http://localhost/</id>
-  <link rel="self" href="http://localhost/"/>
+  <id>http://li55-41.members.linode.com/</id>
+  <link rel="self" href="http://li55-41.members.linode.com/"/>
 
   <% 
     Items = Data,
@@ -29,8 +29,8 @@
   <entry>
     <title><% Item#item.title %></title>
     <updated><% date(Item#item.pubdate) %></updated>
-    <id>http://localhost/<% by_pubdate(Item#item.pubdate) %></id>
-    <content type="text/html" src="http://localhost/<% by_pubdate(Item#item.pubdate) %>"/>
+    <id>http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %></id>
+    <content type="text/html" src="http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %>"/>
     <summary><% Item#item.title %></summary>
   </entry>
 
