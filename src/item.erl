@@ -1,7 +1,8 @@
 -module(item).
--export([start/0, insert/3, insert/4, insert_from_file/1, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
+-export([start/0, insert/3, insert/4, insert_from_file/1, insert_from_dir/1, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
 
 -include_lib("stdlib/include/qlc.hrl").
+-include_lib("kernel/include/file.hrl").
 
 -include("item.hrl").
 
@@ -38,6 +39,14 @@ insert_from_file(File) ->
     [Item] ->
       insert(Item#item.pubdate, Title, Tags, Body)
   end.
+
+is_readable_file(File) ->
+  {ok, Info} = file:read_file_info(File),
+  (Info#file_info.type == regular) and ((Info#file_info.access == read) or (Info#file_info.access == read_write)).
+
+insert_from_dir(Dir) ->
+  {ok, Files} = file:list_dir(Dir),
+  [ insert_from_file(File) || File <- Files, is_readable_file(File) ].
 
 by_pubdate(Pubdate) ->
   {atomic, Items} = mnesia:transaction(fun () -> mnesia:read({item, Pubdate}) end),
