@@ -1,5 +1,5 @@
 -module(item).
--export([start/0, insert/3, insert/4, insert_from_file/1, insert_from_dir/1, by_pubdate/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
+-export([start/0, insert/3, insert/4, insert_from_file/1, insert_from_dir/1, by_pubdate/1, by_title/1, all/0, ascending/1, descending/1, filter_tag/2, last/0]).
 
 -include_lib("stdlib/include/qlc.hrl").
 -include_lib("kernel/include/file.hrl").
@@ -58,7 +58,7 @@ last() ->
   Item.
 
 by_title(Title) ->
-  {atomic, Items} = mnesia:transaction(fun () -> mnesia:match_object(#item{pubdate=' ', title=Title, tags=' ', body=' '}) end),
+  {atomic, Items} = mnesia:transaction(fun () -> mnesia:match_object(#item{pubdate='_', title=Title, tags='_', body='_'}) end),
   Items.
 
 all() ->
