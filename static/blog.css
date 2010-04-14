@@ -1,7 +1,7 @@
 body {
   font-size: 1.0em;
   font-family: helvetica, sans-serif;
-  color: #333;
+  color: #444;
 }
 
 #hd, #ft {
@@ -15,7 +15,7 @@ body {
 
 a {
   color: #000;
-  text-decoration : none
+  text-decoration : none;
 }
 
 #title {
