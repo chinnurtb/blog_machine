@@ -41,13 +41,9 @@ insert_from_file(File) ->
       insert(Item#item.pubdate, Title, Tags, Body)
   end.
 
-is_readable_file(File) ->
-  {ok, Info} = file:read_file_info(File),
-  (Info#file_info.type == regular) and ((Info#file_info.access == read) or (Info#file_info.access == read_write)).
-
 insert_from_dir(Dir) ->
   {ok, Files} = file:list_dir(Dir),
-  [ insert_from_file(File) || File <- Files, is_readable_file(File) ].
+  [ insert_from_file(Dir ++ File) || File <- Files, lists:suffix(".post", File) ].
 
 by_pubdate(Pubdate) ->
   {atomic, Items} = mnesia:transaction(fun () -> mnesia:read({item, Pubdate}) end),
