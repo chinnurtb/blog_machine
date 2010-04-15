@@ -30,7 +30,12 @@
     <title><% Item#item.title %></title>
     <updated><% date(Item#item.pubdate) %></updated>
     <id>http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %></id>
-    <content type="text/html" src="http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %>"/>
+    <link href="http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %>"/>
+    <content type="text/html">
+      <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css">
+      <link rel="stylesheet" type="text/css" href="/static/blog.css"> 
+      <div class="body"><% markup:to_html(Item#item.body) %></div>
+    </content>
     <summary><% Item#item.title %></summary>
   </entry>
 
