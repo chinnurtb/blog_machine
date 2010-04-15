@@ -32,8 +32,8 @@
     <id>http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %></id>
     <link href="http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %>"/>
     <content type="text/html">
-      <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css">
-      <link rel="stylesheet" type="text/css" href="/static/blog.css"> 
+      <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/blog.css"/> 
       <div class="body"><% markup:to_html(Item#item.body) %></div>
     </content>
   </entry>
