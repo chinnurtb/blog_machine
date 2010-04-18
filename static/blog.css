@@ -15,7 +15,7 @@ body {
 
 a {
   color: #000;
-  text-decoration : none;
+  text-decoration: none;
 }
 
 #title {
@@ -99,6 +99,10 @@ a {
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
   border: 1px solid #eee;
+}
+
+.item .body a {
+  text-decoration: underline;
 }
 
 .item .tags {
