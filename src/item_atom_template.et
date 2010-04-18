@@ -12,8 +12,8 @@
   <author>
     <name>Jamie Brandon</name>
   </author>
-  <id>http://li55-41.members.linode.com/</id>
-  <link rel="self" href="http://li55-41.members.linode.com/"/>
+  <id>http://scattered-thoughts.net/</id>
+  <link rel="self" href="http://scattered-thoughts.net/"/>
 
   <% 
     Items = Data,
@@ -29,8 +29,8 @@
   <entry>
     <title><% Item#item.title %></title>
     <updated><% date(Item#item.pubdate) %></updated>
-    <id>http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %></id>
-    <link href="http://li55-41.members.linode.com/<% by_pubdate(Item#item.pubdate) %>"/>
+    <id>http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %></id>
+    <link href="http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %>"/>
     <content type="text/html">
       <html>
         <head>
