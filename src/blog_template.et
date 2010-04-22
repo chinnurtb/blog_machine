@@ -11,6 +11,7 @@
   <!--[if lt IE 8]><script src="static/IE8.js" type="text/javascript"></script><![endif]-->
   <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
   <link rel="stylesheet" type="text/css" href="/static/blog.css"/>
+  <link rel="alternate" type="application/atom+xml" href="/atom"/>
 </head>
 
 <%! uses yui grids for layout %>
