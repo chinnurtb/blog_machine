@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
   <link rel="stylesheet" type="text/css" href="/static/blog.css"/>
   <link rel="alternate" type="application/atom+xml" href="/atom"/>
+  <meta name="google-site-verification" content="ETCrYj66LM8bh68hRjQ5zTs6uqTHCZ7l40qoEV-uc54" />
 </head>
 
 <%! uses yui grids for layout %>
