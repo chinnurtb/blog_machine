@@ -2,7 +2,7 @@
 
 -behaviour(gen_server).
 
--export([start_link/0, to_html/1]).
+-export([start_link/0, to_html/2]).
 
 % gen_server
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,terminate/2, code_change/3]).
@@ -29,8 +29,13 @@ code_change(_OldVsn, State, _Extra) ->
 
 % replies
 
-handle_call({to_html, Markup}, _From, State) ->
-  true = port_command(State#state.port, Markup),
+handle_call({to_html, Markup, Abridge}, _From, State) ->
+  Command = 
+    case Abridge of
+      false -> [0, Markup];
+      true -> [1, Markup]
+    end,
+  true = port_command(State#state.port, Command),
   Response = case collect_response(State#state.port) of
     {ok, Html} -> {reply, Html, State}
   end,
@@ -50,6 +55,6 @@ handle_info(_Info, State) ->
 
 % external interface
 
-to_html(Markup) ->
-  gen_server:call(?SERVER, {to_html, Markup}, 2000).
+to_html(Markup, Abridge) ->
+  gen_server:call(?SERVER, {to_html, Markup, Abridge}, 2000).
 

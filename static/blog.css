@@ -105,9 +105,14 @@ a {
   text-decoration: underline;
 }
 
-.item .tags {
+.item .more {
   margin: 2em;
   margin-bottom: 1em;
+  text-align: center;
+}
+
+.item .tags {
+  margin: 1em;
   text-align: center;
 }
 

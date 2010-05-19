@@ -5,13 +5,13 @@
 <%! beginning of template %>
 
 <% 
-  Items = Data,
-  [ item(Item) || Item <- Items ] 
+  {Items, Abridge} = Data,
+  [ item(Item, Abridge) || Item <- Items ] 
 %>
 
 <%! end of template %>
 
-<%@ item(Item) %>
+<%@ item(Item, Abridge) %>
 <div class="item">
   <div class="header"> 
     <div class="title">
@@ -20,7 +20,15 @@
     <div class="date"><% date(Item#item.pubdate) %></div>
   </div>
   <div class="divider"></div>
-  <div class="body"><% markup:to_html(Item#item.body) %></div>
+  <div class="body"><% markup:to_html(Item#item.body, Abridge) %></div>
+  <div class="more">
+    <% 
+      case Abridge of
+        true -> anchor(by_pubdate(Item#item.pubdate), "read more...");
+        false -> ""
+      end
+    %>
+  </div>
   <div class="tags">
     <% [ anchor(by_tag(Tag), Tag) || Tag <- Item#item.tags ] %>
   </div>

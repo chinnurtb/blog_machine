@@ -21,7 +21,7 @@
   <div id="hd">
     <a id="title" href="/all?order=desc&tag=post">Scattered Thoughts</a>
     <div id="navbar">
-      <% by_tag("post", "Blog") %> 
+      <% by_tag("post&abridge=true", "Blog") %> 
       <% by_tag("project", "Projects") %> 
       <% by_tag("dead", "Graveyard") %>
       <% by_tag("about", "About") %>
