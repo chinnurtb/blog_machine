@@ -37,7 +37,7 @@
           <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
           <link rel="stylesheet" type="text/css" href="/static/blog.css"/> 
         </head>
-        <body><% markup:to_html(Item#item.body) %></body>
+        <body><% markup:to_html(Item#item.body, false) %></body>
       </html>
     </content>
   </entry>
