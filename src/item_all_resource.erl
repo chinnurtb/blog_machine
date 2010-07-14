@@ -36,7 +36,7 @@ to_html(Reqdata, Context) ->
       {"abridge","true"} -> true;
       _ -> false
     end,
-  Body = item_template:render({Items, Abridge}),
+  Body = item_template:render({Items, Abridge, false}),
   ok = erltl:compile("src/blog_template.et"),
   Html = blog_template:render(Body),
   {Html, Reqdata, Context}.

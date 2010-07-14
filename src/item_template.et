@@ -5,13 +5,13 @@
 <%! beginning of template %>
 
 <% 
-  {Items, Abridge} = Data,
-  [ item(Item, Abridge) || Item <- Items ] 
+  {Items, Abridge, Comments} = Data,
+  [ item(Item, Abridge, Comments) || Item <- Items ] 
 %>
 
 <%! end of template %>
 
-<%@ item(Item, Abridge) %>
+<%@ item(Item, Abridge, Comments) %>
 <div class="item">
   <div class="header"> 
     <div class="title">
@@ -34,9 +34,9 @@
   </div>
   <div class="comments">
     <%
-      case Abridge of
-        true -> "";
-        false -> disquss()
+      case Comments of
+        true -> disquss();
+	false -> ""
       end
     %>
   </div>
