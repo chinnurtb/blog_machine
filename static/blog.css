@@ -111,6 +111,11 @@ a {
   text-align: center;
 }
 
+.item .comments {
+  margin: 2em;
+  margin-bottom: 1em;
+}
+
 .item .tags {
   margin: 1em;
   text-align: center;

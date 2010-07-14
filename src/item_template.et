@@ -32,6 +32,14 @@
   <div class="tags">
     <% [ anchor(by_tag(Tag), Tag) || Tag <- Item#item.tags ] %>
   </div>
+  <div class="comments">
+    <%
+      case Abridge of
+        true -> "";
+        false -> disquss()
+      end
+    %>
+  </div>
 </div>
 
 <%@ date(Pubdate) %>
@@ -47,4 +55,19 @@
 
 <%@ anchor(Href, Text) %>
 <a href=<% Href %>><% Text %></a>
-  
+
+<%@ disquss() %>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://scattered-thoughts.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=scattered-thoughts">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
