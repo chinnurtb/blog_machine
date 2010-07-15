@@ -51,7 +51,7 @@
 <% io_lib:format("/one/~w/~w/~w", [Mega,One,Micro]) %>
 
 <%@ by_tag(Tag) %>
-/all?order=desc&tag=<%Tag%>
+/all?order=desc&tag=<%Tag%>&abridge=true
 
 <%@ anchor(Href, Text) %>
 <a href=<% Href %>><% Text %></a>
