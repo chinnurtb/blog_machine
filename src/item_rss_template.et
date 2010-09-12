@@ -26,7 +26,7 @@
   <item>
     <title><% Item#item.title %></title>
     <pubDate><% date(Item#item.pubdate) %></pubDate>
-    <description><% Item#item.title %></description>
+    <description><% xmerl_lib:export_text(wrap_body(Item#item.body)) %></description>
     <link>http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %></link>
     <guid><% Item#item.title %></guid>
   </item>
@@ -39,3 +39,11 @@
 <%? {Mega,One,Micro} = Pubdate %>
 <% io_lib:format("/one/~w/~w/~w", [Mega,One,Micro]) %>
 
+<%@ wrap_body(Body) %>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/blog.css"/> 
+    </head>
+    <body><% markup:to_html(Body, false) %></body>
+</html>
