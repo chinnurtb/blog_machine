@@ -1,0 +1,42 @@
+<%~
+-include("src/item.hrl").
+%>
+
+<%! beginning of template %>
+
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+
+  <title>Scattered Thoughts</title>
+  <lastBuildDate><% date((item:last())#item.pubdate) %></lastBuildDate>
+  <id>http://scattered-thoughts.net/</id>
+  <link>http://scattered-thoughts.net/</link>
+
+  <% 
+    Items = Data,
+    [ item(Item) || Item <- Items ] 
+  %>
+
+</feed>
+
+<%! end of template %>
+
+<%@ item(Item) %>
+
+  <item>
+    <title><% Item#item.title %></title>
+    <pubDate><% date(Item#item.pubdate) %></pubDate>
+    <description><<% Item#item.title %></description>
+    <link>http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %></link>
+    <guid><% Item#item.title %></guid>
+  </item>
+
+<%@ date(Pubdate) %>
+<%? {{Year,Month,Day},{Hours,Minutes,Seconds}} = calendar:now_to_universal_time(Pubdate) %>
+<% io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0BZ", [Year,Month,Day,Hours,Minutes,Seconds]) %>
+
+<%@ by_pubdate(Pubdate) %>
+<%? {Mega,One,Micro} = Pubdate %>
+<% io_lib:format("/one/~w/~w/~w", [Mega,One,Micro]) %>
+
