@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/static/reset-fonts-grids.css"/>
   <link rel="stylesheet" type="text/css" href="/static/blog.css"/>
   <link rel="alternate" type="application/atom+xml" href="/atom"/>
+  <link rel="alternate" type="application/rss+xml" href="/rss"/>
   <meta name="google-site-verification" content="ETCrYj66LM8bh68hRjQ5zTs6uqTHCZ7l40qoEV-uc54" />
 </head>
 
@@ -35,7 +36,10 @@
     </div>
   </div>
   <div id="ft">
-    <div id="feed"><a href="/atom"><img src="/static/atom.png"/></a></div>
+    <div id="feed">
+    	 <a href="/atom"><img src="/static/atom.png"/></a>
+    	 <a href="/rss"><img src="/static/rss.png"/></a>
+    </div>
     <div>Copyright <big>&copy;</big> Jamie Brandon 2010</div>
   </div>
 </div>
