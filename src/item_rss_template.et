@@ -27,7 +27,7 @@
   <item>
     <title><% Item#item.title %></title>
     <pubDate><% date(Item#item.pubdate) %></pubDate>
-    <description><<% Item#item.title %></description>
+    <description><% Item#item.title %></description>
     <link>http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %></link>
     <guid><% Item#item.title %></guid>
   </item>
