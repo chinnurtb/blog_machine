@@ -10,7 +10,6 @@
 
   <title>Scattered Thoughts</title>
   <lastBuildDate><% date((item:last())#item.pubdate) %></lastBuildDate>
-  <id>http://scattered-thoughts.net/</id>
   <link>http://scattered-thoughts.net/</link>
 
   <% 
@@ -18,7 +17,7 @@
     [ item(Item) || Item <- Items ] 
   %>
 
-</feed>
+</channel>
 
 <%! end of template %>
 
