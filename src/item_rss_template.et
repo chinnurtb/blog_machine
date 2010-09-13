@@ -28,7 +28,7 @@
     <pubDate><% date(Item#item.pubdate) %></pubDate>
     <description><% xmerl_lib:export_text(wrap_body(Item#item.body)) %></description>
     <link>http://scattered-thoughts.net/<% by_pubdate(Item#item.pubdate) %></link>
-    <guid><% Item#item.title %></guid>
+    <guid><% by_pubdate(Item#item.pubdate) %></guid>
   </item>
 
 <%@ date(Pubdate) %>
