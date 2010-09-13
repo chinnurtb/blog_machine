@@ -25,7 +25,7 @@ get_items(Reqdata) ->
   ).
 
 to_atom(Reqdata, Context) ->
-  Items = get_items(Reqdata),
+  Items = lists:reverse(get_items(Reqdata)),
   ok = erltl:compile("src/item_atom_template.et"),
   Atom = item_atom_template:render(Items),
   {Atom, Reqdata, Context}.

@@ -25,7 +25,7 @@ get_items(Reqdata) ->
   ).
 
 to_rss(Reqdata, Context) ->
-  Items = get_items(Reqdata),
+  Items = lists:reverse(get_items(Reqdata)),
   ok = erltl:compile("src/item_rss_template.et"),
   Rss = item_rss_template:render(Items),
   {Rss, Reqdata, Context}.
