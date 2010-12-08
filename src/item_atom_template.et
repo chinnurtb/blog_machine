@@ -60,5 +60,5 @@
 
 <%@ by_pubdate(Pubdate) %>
 <%? {Mega,One,Micro} = Pubdate %>
-<% io_lib:format("/one/~w/~w/~w", [Mega,One,Micro]) %>
+<% io_lib:format("one/~w/~w/~w", [Mega,One,Micro]) %>
 
