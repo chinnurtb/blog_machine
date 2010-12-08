@@ -58,7 +58,4 @@
 <%? {{Year,Month,Day},{Hours,Minutes,Seconds}} = calendar:now_to_universal_time(Pubdate) %>
 <% io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0BZ", [Year,Month,Day,Hours,Minutes,Seconds]) %>
 
-<%@ by_pubdate(Pubdate) %>
-<%? {Mega,One,Micro} = Pubdate %>
-<% io_lib:format("one/~w/~w/~w", [Mega,One,Micro]) %>
-
+<%@ by_pubdate(Pubdate) %><%? {Mega,One,Micro} = Pubdate %><% io_lib:format("one/~w/~w/~w", [Mega,One,Micro]) %>
