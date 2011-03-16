@@ -45,18 +45,20 @@
   <div id="bd">
     <div id="yui-main">
       <div class="yui-b">
-        <div class="yui-g"><% Data %></div>
+        <div class="yui-g">
+          <% Data %>
+           <div class="item">
+             <div class="header"> 
+               <div class="title">P.S.</div>
+             </div>
+           <div class="divider"></div>
+             <div class="body">I'm currently looking for work - check out my resume <a href="/all?tag=about">here<a/></div>
+           </div>
+        </div>
       </div>
     </div>
   </div>
   <div id="ft">
-    <div class="item">
-      <div class="header"> 
-        <div class="title">P.S.</div>
-      </div>
-      <div class="divider"></div>
-      <div class="body">I'm currently looking for work - check out my resume <a href="/all?tag=about">here<a/></div>
-    </div>
     <div id="feed">
     	 <a href="/atom"><img src="/static/atom.png"/></a>
     	 <a href="/rss"><img src="/static/rss.png"/></a>
