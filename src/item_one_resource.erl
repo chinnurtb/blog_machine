@@ -29,7 +29,7 @@ resource_exists(Reqdata, Context) ->
 
 to_html(Reqdata, Context) ->
   ok = erltl:compile("src/item_template.et"),
-  Body = item_template:render({[Context#context.item], false, true}),
+  Body = item_template:render({[Context#context.item], false, false}),
   ok = erltl:compile("src/blog_template.et"),
   Html = blog_template:render(Body),
   {Html, Reqdata, Context}.
