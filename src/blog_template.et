@@ -37,8 +37,7 @@
     <a id="title" href="/all?order=desc&tag=post">Scattered Thoughts</a>
     <div id="navbar">
       <% by_tag("post&abridge=true", "Blog") %> 
-      <% by_tag("project", "Projects") %> 
-      <% by_tag("dead", "Graveyard") %>
+      <a class=nav href="http://github.com/jamii">Code</a>
       <% by_tag("about", "About") %>
     </div>
   </div> 
