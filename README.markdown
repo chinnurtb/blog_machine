@@ -1,0 +1,1 @@
+The code for my [blog](http://scattered-thoughts.net). Posts are stored in mnesia and served by webmachine. Templates are written in erltl. Post bodies are processed using simple_markup.
